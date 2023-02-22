@@ -1,3 +1,4 @@
+// slider
 const swiper = new Swiper('.info__slider', {
   direction: 'horizontal',
   loop: true,
@@ -40,9 +41,56 @@ const swiper = new Swiper('.info__slider', {
       each.addEventListener('click', function () {
         const currentTarget = this.getAttribute('href');
         smoothScroll(currentTarget, 1000);
-        $('.header__nav').removeClass('header__nav-active');
       });
     });
   };
   scrollTo();
 })();
+
+// modal
+
+const buttonsThatOpenModals = document.querySelectorAll('[data-modal]');
+const buttonsThatCloseModals = document.querySelectorAll('.modal__close');
+const buttonThatRedirectToPayment = document.querySelector('.order__buy');
+
+const closeModals = () => {
+  console.log(1);
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach((modal) => {
+    modal.classList.remove('open');
+  });
+  document.body.classList.remove('modal-open');
+};
+
+const isModalOpen = () => {
+  const modals = document.querySelectorAll('.modal');
+  let isOpen = false;
+
+  modals.forEach((modal) => {
+    if (modal.classList.contains('open')) {
+      isOpen = true;
+    }
+  });
+
+  return isOpen;
+};
+
+const openModal = (button) => {
+  closeModals();
+  modal = button.dataset.modal;
+  document.querySelector(`.modal__${modal}`).classList.add('open');
+  document.body.classList.add('modal-open');
+};
+
+buttonsThatOpenModals.forEach((button) => {
+  button.addEventListener('click', () => openModal(button));
+});
+
+buttonsThatCloseModals.forEach((button) => {
+  button.addEventListener('click', closeModals);
+});
+
+buttonThatRedirectToPayment.addEventListener('click', (e) => {
+  e.stopPropagation();
+  closeModals();
+});

@@ -3,6 +3,8 @@
   --dark: #424242;
   --black: #141414;
   --gray: #d9d9d9;
+  --modal-bg: rgba(0, 0, 0, 0.5);
+  --input-bg: #f6f6f6;
   --dark-gray: #878f8d;
   --light-gray: #d8d8d8;
   --light-red: #f55656;
@@ -23,21 +25,22 @@ body {
   line-height: 1.2;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 body::-webkit-scrollbar {
   width: 5px;
 }
 
 body::-webkit-scrollbar-thumb {
   border-radius: 20px;
+  background-color: var(--light-gray);
+  border: 1px solid var(--light-gray);
 }
 
 body::-webkit-scrollbar-track {
   background: var(--dark);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--light-gray);
-  border: 1px solid var(--light-gray);
 }
 
 ul,
@@ -557,6 +560,10 @@ a {
   transition: var(--link-transition);
 }
 
+.outro__buy:hover {
+  background: var(--light-orange-hover);
+}
+
 /* /outro */
 
 /* footer */
@@ -600,3 +607,197 @@ a {
 }
 
 /* /footer */
+
+/* modal */
+
+.modal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.modal.open {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  padding: 100px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--modal-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal__wrapper {
+  max-width: 900px;
+  max-height: 700px;
+  height: auto;
+  padding: 50px 40px;
+  border-radius: 60px;
+  background: var(--white);
+  position: relative;
+}
+
+.modal__close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modal__close svg path {
+  transition: var(--link-transition);
+}
+
+.modal__close:hover svg path {
+  fill: var(--gray);
+}
+
+.modal .offer__content {
+  text-align: center;
+}
+
+.modal .offer__background {
+  width: 740px;
+  height: 290px;
+}
+
+.order__content {
+  width: 760px;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.order__title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 45px;
+  text-align: center;
+}
+
+.order__head {
+  padding-bottom: 25px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--dark);
+}
+
+.order__head-product {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  font-weight: 800;
+}
+
+.order__head-name {
+  font-size: 25px;
+  color: var(--light-orange);
+}
+
+.order__head-amount {
+  font-size: 20px;
+}
+
+.order__head-price {
+  font-size: 25px;
+}
+
+.order__head-price {
+  font-weight: 800;
+}
+
+.order__form-title {
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+}
+
+.order__form {
+  height: 300px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.order__form-item--double {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.order__form-item label {
+  display: block;
+  padding-left: 30px;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.order__form-item input {
+  width: 100%;
+  height: 70px;
+  padding: 10px 25px;
+  color: var(--dark);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  border-radius: 60px;
+  background: var(--input-bg);
+  border: none;
+  outline: none;
+}
+
+.order__form-item--double input {
+  width: 350px;
+}
+
+.order__form::-webkit-scrollbar {
+  width: 5px;
+}
+
+.order__form::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: var(--light-gray);
+  border: 1px solid var(--light-gray);
+}
+
+.order__form::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background: var(--dark);
+}
+
+.order__buy {
+  width: 285;
+  margin: 0 auto;
+  padding: 25px 30px;
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  justify-self: center;
+  border-radius: 27px;
+  border: none;
+  background: var(--light-orange);
+  transition: var(--link-transition);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.order__buy:hover {
+  background: var(--light-orange-hover);
+}
+
+/* /modal */
